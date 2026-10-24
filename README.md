@@ -428,11 +428,48 @@ npm run test:all      # 以上全部 + 构建
 
 ### GitHub Pages（当前线上版本用的就是这个）
 
-仓库已内置 `.github/workflows/deploy.yml`：
+当前仓库使用 **`gh-pages` 分支发布**（Settings → Pages → Source: Deploy from a branch → `gh-pages` / `root`），并绑定了自定义域名：
 
-1. 仓库 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**
-2. 推送 `main` 即自动构建并发布
-3. 线上地址：`https://321.market/coin-persona/`（仓库配置了自定义域名，`github.io` 会自动跳转到这里）
+1. 本地 `npm run build`
+2. 把 `dist/` 的内容推到 `gh-pages` 分支（仓库根目录已附 `public/.nojekyll`）
+3. 线上地址：**https://321.market/coin-persona/**（`github.io` 会自动 301 到这里）
+
+<details>
+<summary><b>想改用 GitHub Actions 自动部署？</b></summary>
+
+在仓库根目录新建 `.github/workflows/deploy.yml`：
+
+```yaml
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci && npm run build
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: dist }
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: { name: github-pages }
+    steps:
+      - uses: actions/deploy-pages@v4
+```
+
+然后把 **Settings → Pages → Source** 改成 **GitHub Actions**。注意：同一个仓库不要同时用分支发布和 Actions 发布，否则 `deploy` 任务会因 Pages 已被占用而失败。
+
+</details>
 
 <details>
 <summary><b>其它平台（展开）</b></summary>
