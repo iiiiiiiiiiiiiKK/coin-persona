@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.selftest-tmp/
+.e2e-out/
+.share-check/
+*.local
+.DS_Store
+
+*.tsbuildinfo
+

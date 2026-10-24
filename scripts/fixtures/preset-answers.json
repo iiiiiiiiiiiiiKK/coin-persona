@@ -1,0 +1,94 @@
+{
+  "seed": "DEMO-2026",
+  "quizIds": [
+    "emotion-others-profit",
+    "impulse-midnight-wick",
+    "profit-sold-too-early",
+    "leverage-sizing",
+    "plan-no-setup",
+    "chase-hot-alt",
+    "sizing-add",
+    "emotion-losing-streak",
+    "leverage-liquidation",
+    "impulse-daily-count",
+    "signal-kol-insider",
+    "plan-before-entry",
+    "leverage-profit",
+    "sizing-per-trade",
+    "drawdown-stopped-out"
+  ],
+  "presets": [
+    {
+      "id": "trend",
+      "name": "追涨型",
+      "expect": "trend-chaser",
+      "answers": "211312030323301"
+    },
+    {
+      "id": "dip",
+      "name": "抄底型",
+      "expect": "dip-catcher",
+      "answers": "303123133033302"
+    },
+    {
+      "id": "confirm",
+      "name": "右侧确认型",
+      "expect": "breakout-confirmer",
+      "answers": "003101022000113"
+    },
+    {
+      "id": "range",
+      "name": "震荡高频型",
+      "expect": "range-scalper",
+      "answers": "230011321300122"
+    },
+    {
+      "id": "hodl",
+      "name": "长期持有型",
+      "expect": "conviction-holder",
+      "answers": "103302130002023"
+    },
+    {
+      "id": "impulse",
+      "name": "高频冲动型",
+      "expect": "impulse-trader",
+      "answers": "213321232303011"
+    },
+    {
+      "id": "paper",
+      "name": "过度止盈型",
+      "expect": "paper-hands",
+      "answers": "031310200311003"
+    },
+    {
+      "id": "bag",
+      "name": "亏损死扛型",
+      "expect": "bag-holder",
+      "answers": "012301112001222"
+    },
+    {
+      "id": "news",
+      "name": "消息驱动型",
+      "expect": "news-trader",
+      "answers": "101302321133012"
+    },
+    {
+      "id": "risk",
+      "name": "风控纪律型",
+      "expect": "risk-officer",
+      "answers": "030001301000103"
+    },
+    {
+      "id": "revenge",
+      "name": "报复交易型",
+      "expect": "revenge-trader",
+      "answers": "201012122103002"
+    },
+    {
+      "id": "leverage",
+      "name": "杠杆信仰型",
+      "expect": "leverage-believer",
+      "answers": "202220103101212"
+    }
+  ]
+}
