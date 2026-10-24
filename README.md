@@ -10,7 +10,7 @@
 
 <br />
 
-[![Live](https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E4%BD%93%E9%AA%8C-iiiiiiiiiiiiiKK.github.io%2Fcoin--persona-4bffb0?style=for-the-badge&labelColor=050908)](https://iiiiiiiiiiiiiKK.github.io/coin-persona/)
+[![Live](https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E4%BD%93%E9%AA%8C-321.market%2Fcoin--persona-4bffb0?style=for-the-badge&labelColor=050908)](https://321.market/coin-persona/)
 [![X](https://img.shields.io/badge/%F0%9D%95%8F-@0xkillcoin-ff9f43?style=for-the-badge&labelColor=050908)](https://x.com/0xkillcoin)
 
 <br />
@@ -29,7 +29,7 @@
 
 <div align="center">
 
-### 👉 [**点这里，3 分钟测出你的交易人格**](https://iiiiiiiiiiiiiKK.github.io/coin-persona/) 👈
+### 👉 [**点这里，3 分钟测出你的交易人格**](https://321.market/coin-persona/) 👈
 
 *手机打开效果最好 · 无需登录 · 无需钱包*
 
@@ -432,7 +432,7 @@ npm run test:all      # 以上全部 + 构建
 
 1. 仓库 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**
 2. 推送 `main` 即自动构建并发布
-3. 线上地址：`https://<用户名>.github.io/coin-persona/`
+3. 线上地址：`https://321.market/coin-persona/`（仓库配置了自定义域名，`github.io` 会自动跳转到这里）
 
 <details>
 <summary><b>其它平台（展开）</b></summary>
