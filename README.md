@@ -18,7 +18,7 @@
 [![React](https://img.shields.io/badge/React-18.3-4bffb0?labelColor=050908)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-5.4-ff9f43?labelColor=050908)](https://vitejs.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178c6?labelColor=050908)](https://www.typescriptlang.org/)
-[![Tests](https://img.shields.io/badge/tests-2%20389%20assertions-4bffb0?labelColor=050908)](#-测试与验收)
+[![Tests](https://img.shields.io/badge/tests-2%20544%20assertions-4bffb0?labelColor=050908)](#-测试与验收)
 [![No Tracking](https://img.shields.io/badge/tracking-none-ff6b6b?labelColor=050908)](#-隐私承诺)
 [![No Wallet](https://img.shields.io/badge/wallet-not--required-ff9f43?labelColor=050908)](#-隐私承诺)
 [![License](https://img.shields.io/badge/license-MIT-9db4ab?labelColor=050908)](LICENSE)
@@ -46,6 +46,7 @@
 - [题库设计](#-题库设计)
 - [评分系统](#-评分系统确定性本地引擎)
 - [交互细节](#-交互细节)
+- [iPhone 与移动端](#-iphone-与移动端自适应)
 - [分享图](#-分享图11--34真实可导出)
 - [技术架构](#-技术架构三部分离)
 - [快速开始](#-快速开始)
@@ -103,6 +104,16 @@
 **答题** — 一次一题，情景数据、进度条、可返回修改
 
 <img src="docs/screenshots/quiz.png" alt="答题页" width="820" />
+
+<br /><br />
+
+**iPhone** — 顶栏作者 𝕏、答题、报告（390×844 真机尺寸截图）
+
+<img src="docs/screenshots/mobile-home.png" alt="iPhone 首页" width="240" />
+&nbsp;
+<img src="docs/screenshots/mobile-quiz.png" alt="iPhone 答题页" width="240" />
+&nbsp;
+<img src="docs/screenshots/mobile-report.png" alt="iPhone 报告页" width="240" />
 
 </div>
 
@@ -281,7 +292,45 @@
 | **键盘操作** | `1`–`5` 选择 · `←` `→` 翻题 · `Enter` 下一题 · `Esc` 关分享图 |
 | **减少动画** | 隐私页开关 + 自动跟随系统 `prefers-reduced-motion` |
 | 读屏支持 | 跳过导航、`role="radiogroup"`、`aria-live` 进度播报 |
-| 手机适配 | 选项高度 ≥ 44px，操作按钮吸附底部，390 / 360px 无横向溢出 |
+| 手机适配 | 选项高度 ≥ 44px，操作按钮吸附底部，iPhone SE → 15 Pro Max 全系无横向溢出 |
+| iPhone 安全区 | 顶栏 / 页脚 / 底部操作栏适配刘海与 Home 指示条（`env(safe-area-inset-*)`） |
+| 顶栏作者入口 | 右上角 𝕏 图标 → [@0xkillcoin](https://x.com/0xkillcoin)，窄屏自动收成图标按钮 |
+
+---
+
+## 📱 iPhone 与移动端（自适应）
+
+<div align="center">
+
+<img src="docs/screenshots/mobile-home.png" alt="iPhone 首页" width="230" />
+&nbsp;
+<img src="docs/screenshots/mobile-quiz.png" alt="iPhone 答题页" width="230" />
+&nbsp;
+<img src="docs/screenshots/mobile-report.png" alt="iPhone 报告页" width="230" />
+
+</div>
+
+布局是**流式 + 断点**，不是固定宽度：从 320px 的老设备到 1440px 桌面都只做「重新排列」，不做「缩放整页」。
+
+| 设备 / 视口 | 关键调整 |
+| :--- | :--- |
+| ≥ 900px | 双栏：首页 hero + 终端卡、报告 hero + 副人格卡、雷达 + 仪表三栏 |
+| 641–900px | 单栏堆叠，维度卡 / 步骤卡变两列，副人格卡上移 |
+| ≤ 640px | 全部单列；选项 ≥ 44px；操作栏 sticky 吸底；隐藏键盘提示 |
+| ≤ 420px | 顶栏作者 𝕏 收成 36px 图标按钮 |
+| ≤ 380px | 品牌只留图标，给导航与 𝕏 让位；选项序号隐藏 |
+
+针对 iPhone 专门处理的细节：
+
+- **安全区**：`viewport-fit=cover` + `env(safe-area-inset-*)`，顶栏让开刘海 / 灵动岛，页脚与底部操作栏让开 Home 指示条
+- **动态视口**：`min-height: 100dvh`，Safari 地址栏收起 / 展开时不会出现半屏空白
+- **点击反馈**：`-webkit-tap-highlight-color: transparent` + `touch-action: manipulation`，取消灰块与 300ms 延迟
+- **字体缩放**：`-webkit-text-size-adjust: 100%`，横屏不自动放大；无输入框，因此不会触发 iOS 聚焦缩放
+- **固定背景**：iOS 不支持 `background-attachment: fixed`，移动端自动降级为 `scroll`
+- **横屏**：竖屏 → 横屏切换后无横向溢出，顶栏元素不重叠
+- **底部吸附**：答题页「上一题 / 下一题」在拇指区，滚动时始终可见
+
+> 以上全部由 `npm run test:mobile` 自动验证：iPhone SE / 12 mini / 13·14 / 14 Pro / 15 Pro Max 五种机型 × 竖屏 + 横屏 + 刘海安全区 + 130% 字号，以及 320–1440px 共 24 个宽度的顶栏扫描。
 
 ---
 
@@ -374,6 +423,7 @@ npm run test:share    # 分享图：891 项断言（48 张卡）
 npm run test:e2e      # 浏览器端到端：69 项
 npm run test:layout   # 版式 / 对比度 / 无障碍：66 项
 npm run test:visual   # 文字重叠 / 内容裁切：16 项
+npm run test:mobile   # iPhone 5 机型 + 横屏 + 安全区 + 宽度扫描：151 项
 npm run test:all      # 以上全部 + 构建
 ```
 
@@ -415,6 +465,8 @@ npm run test:all      # 以上全部 + 构建
 | 分享图无裁切 | 48 张卡的包围盒、内容底部、0 省略、PNG 解码 | ✅ |
 | 隐私说明明确 | 首页 / 报告页 / 隐私页 + 静态扫描（无 fetch、无 XHR、无私钥字段） | ✅ |
 | 手机端正常 | 5 种视口无横向溢出、触控 ≥ 44px、正文 ≥ 12–14px | ✅ |
+| iPhone 全系自适应 | SE / 12 mini / 13·14 / 14 Pro / 15 Pro Max，含横屏、刘海安全区、130% 字号 | ✅ |
+| 顶栏作者 𝕏 | 5 种 iPhone 宽度下均在顶栏内、可点击、指向 x.com/0xkillcoin | ✅ |
 | 构建通过 | `tsc -b && vite build`（strict + noUnusedLocals） | ✅ |
 | 无外部请求 | E2E 监听所有请求，只有本机静态资源 | ✅ |
 | 减少动画 / 键盘 | 数字键、方向键、Esc、偏好写入 localStorage | ✅ |

@@ -109,6 +109,22 @@ try {
   check('首页写明不连接钱包/交易所', text.includes('钱包') && text.includes('交易'));
   check('首页有开始按钮', Boolean(await page.$('button')));
   check('首页展示 12 种人格', (await page.$$('.roster-item')).length === 12);
+  const headerX = await page.evaluate(() => {
+    const a = document.querySelector('.topbar .author-x');
+    if (!a) return null;
+    const r = a.getBoundingClientRect();
+    const bar = document.querySelector('.topbar-inner').getBoundingClientRect();
+    return {
+      href: a.getAttribute('href'),
+      target: a.getAttribute('target'),
+      rel: a.getAttribute('rel'),
+      inside: r.right <= bar.right + 1 && r.bottom <= bar.bottom + 1 && r.width > 0 && r.height > 0,
+    };
+  });
+  check('顶栏有作者 X 链接', Boolean(headerX), JSON.stringify(headerX));
+  check('顶栏 X 指向 https://x.com/0xkillcoin', headerX?.href === 'https://x.com/0xkillcoin', headerX?.href ?? '');
+  check('顶栏 X 新标签打开且隔离 opener', headerX?.target === '_blank' && (headerX?.rel ?? '').includes('noreferrer'));
+  check('顶栏 X 位于顶栏内', Boolean(headerX?.inside), JSON.stringify(headerX));
   check('首页含娱乐声明', text.includes('不构成投资建议'));
   check('首页无横向溢出', (await noOverflow(page)).scrollWidth <= 1361);
   const homeShot = join(OUT, 'home.png');

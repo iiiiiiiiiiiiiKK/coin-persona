@@ -14,7 +14,8 @@
     "test:e2e": "node scripts/e2e.mjs",
     "test:layout": "node scripts/layout-audit.mjs",
     "test:visual": "node scripts/visual-audit.mjs",
-    "test:all": "npm run build && npm run test && npm run test:share && npm run test:e2e && npm run test:layout && npm run test:visual"
+    "test:all": "npm run build && npm run test && npm run test:share && npm run test:e2e && npm run test:layout && npm run test:visual && npm run test:mobile",
+    "test:mobile": "node scripts/mobile-audit.mjs"
   },
   "dependencies": {
     "react": "18.3.1",
