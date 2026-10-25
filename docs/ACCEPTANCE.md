@@ -117,3 +117,29 @@ dist/assets/index-*.js          242.98 kB │ gzip: 91.70 kB
 | iOS 点击灰块与双击缩放延迟 | `-webkit-tap-highlight-color: transparent` + `touch-action: manipulation` |
 | iOS 不支持 `background-attachment: fixed` | 移动端降级为 `scroll` |
 | 顶栏 / 导航 / 品牌触控高度不足 32px | 品牌 44px、导航 40px、页脚链接 40px |
+
+
+## 9. 线上地址更正（2026-10-25 第二次追加）
+
+**现象**：`https://321.market/coin-persona/` 返回 404，页面是个人站（Next.js）的 404。
+
+**原因**：`321.market` 这个自定义域名绑定在**用户站仓库** `iiiiiiiiiiiiiKK.github.io` 上（该仓库以 Actions 发布，根路径是个人主页）。
+GitHub Pages 的项目站**不会自动继承**用户站的自定义域名，因此 `321.market/coin-persona/` 落到了个人站的 404 路由。
+
+**核实**：
+
+| URL | 状态 | 标题 |
+| :--- | :--- | :--- |
+| `https://iiiiiiiiiiiiiKK.github.io/coin-persona/` | 200 | 炒币人格测试 · COIN PERSONA |
+| `https://321.market/coin-persona/` | 404 | 404: This page could not be found. |
+| `https://321.market/` | 200 | Adam · 个人主页 |
+
+**修复**：全站统一回 GitHub Pages 地址 `https://iiiiiiiiiiiiiKK.github.io/coin-persona/`。
+
+改动位置：
+
+- `src/data/site.ts`：`SITE_LIVE_URL`、`SITE_URL_LABEL`（分享图页脚）
+- `index.html`：`og:url`
+- `README.md`：在线体验按钮、Live 徽章、部署章节（并补了「为什么 321.market 打不开」的说明与两种短域名方案）
+
+**回归**：规则 1347 / 分享图 891 / E2E 73 / 移动端 151 全部 0 失败；线上实测首页 → 答题 → 报告 → 分享图（1080×1080）通过，控制台 0 报错。
