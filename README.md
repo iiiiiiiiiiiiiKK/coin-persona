@@ -10,7 +10,7 @@
 
 <br />
 
-[![Live](https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E4%BD%93%E9%AA%8C-321.market%2Fcoin--persona-4bffb0?style=for-the-badge&labelColor=050908)](https://321.market/coin-persona/)
+[![Live](https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E4%BD%93%E9%AA%8C-iiiiiiiiiiiiiKK.github.io%2Fcoin--persona-4bffb0?style=for-the-badge&labelColor=050908)](https://iiiiiiiiiiiiiKK.github.io/coin-persona/)
 [![X](https://img.shields.io/badge/%F0%9D%95%8F-@0xkillcoin-ff9f43?style=for-the-badge&labelColor=050908)](https://x.com/0xkillcoin)
 
 <br />
@@ -29,7 +29,7 @@
 
 <div align="center">
 
-### 👉 [**点这里，3 分钟测出你的交易人格**](https://321.market/coin-persona/) 👈
+### 👉 [**点这里，3 分钟测出你的交易人格**](https://iiiiiiiiiiiiiKK.github.io/coin-persona/) 👈
 
 *手机打开效果最好 · 无需登录 · 无需钱包*
 
@@ -480,11 +480,23 @@ npm run test:all      # 以上全部 + 构建
 
 ### GitHub Pages（当前线上版本用的就是这个）
 
-当前仓库使用 **`gh-pages` 分支发布**（Settings → Pages → Source: Deploy from a branch → `gh-pages` / `root`），并绑定了自定义域名：
+- **线上地址：https://iiiiiiiiiiiiiKK.github.io/coin-persona/**
+- 发布方式：**`gh-pages` 分支**（Settings → Pages → Source: Deploy from a branch → `gh-pages` / `root`）
+- 仓库根目录已附 `public/.nojekyll`，避免 Jekyll 处理
 
-1. 本地 `npm run build`
-2. 把 `dist/` 的内容推到 `gh-pages` 分支（仓库根目录已附 `public/.nojekyll`）
-3. 线上地址：**https://321.market/coin-persona/**（`github.io` 会自动 301 到这里）
+```bash
+npm run build
+# 把 dist/ 的内容提交到 gh-pages 分支
+```
+
+> [!NOTE]
+> **关于 `321.market`**：该域名绑定在本人的**用户站仓库**（`iiiiiiiiiiiiiKK.github.io`）上，根路径是一个个人站。
+> GitHub Pages 的**项目站不会自动挂到这个自定义域名下**，所以 `321.market/coin-persona/` 会落到个人站的 404。
+> 本项目因此固定使用 `iiiiiiiiiiiiiKK.github.io/coin-persona/`。
+>
+> 如果确实想要一个短域名，有两种做法：
+> 1. 给本项目配置**独立子域名**（如 `coin.321.market`）：加一条 CNAME 指向 `iiiiiiiiiiiiiKK.github.io`，然后在仓库 Settings → Pages → Custom domain 填 `coin.321.market`，并在 `public/` 放一个同名 `CNAME` 文件；
+> 2. 换到 Cloudflare Pages / Vercel（构建命令 `npm run build`，输出 `dist`），拿到 `*.pages.dev` / `*.vercel.app` 独立地址。
 
 <details>
 <summary><b>想改用 GitHub Actions 自动部署？</b></summary>

@@ -7,11 +7,15 @@ export const SITE_NAME = '炒币人格测试';
 export const SITE_EN = 'COIN PERSONA';
 export const SITE_VERSION = 'v1.0.0';
 
-/** 分享图 / 页脚用的站点标签。部署后按 README 替换成你的真实地址。 */
-export const SITE_URL_LABEL = '321.MARKET/COIN-PERSONA';
+/**
+ * 分享图 / 页脚用的站点标签。
+ * 注意：321.market 绑定在本人的「用户站」仓库上，项目站不会自动挂到该域名下，
+ * 所以这里用 GitHub Pages 的真实地址；如果以后给项目站单独配了自定义域名再替换。
+ */
+export const SITE_URL_LABEL = 'IIIIIIIIIIIIIKK.GITHUB.IO/COIN-PERSONA';
 export const SITE_TAGLINE = '12–16 道加密交易情景题 · 本地确定性评分';
 export const SITE_REPO_URL = 'https://github.com/iiiiiiiiiiiiiKK/coin-persona';
-export const SITE_LIVE_URL = 'https://321.market/coin-persona/';
+export const SITE_LIVE_URL = 'https://iiiiiiiiiiiiiKK.github.io/coin-persona/';
 export const AUTHOR_X_URL = 'https://x.com/0xkillcoin';
 
 export const DISCLAIMER_SHORT = '娱乐与自我反思工具，不构成投资建议。';
